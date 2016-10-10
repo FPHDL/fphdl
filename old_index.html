@@ -1,0 +1,169 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html><head><title>Floating-Point HDL Packages</title>
+<!-- Changed by: , 05-Mar-2007 -->
+  <meta name="description" content="Floating point packages for VHDL and Verilog">
+  <meta name="keywords" content="VHDL, Verilog, Floating Point, IEEE">
+  <meta name="author" content="dbishop@vhdl.org">
+</head>
+<body bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#007F00">
+
+<title> Floating-Point HDL Packages </title>
+<H2>Floating-Point HDL Packages Home Page</H2>
+
+<B> Introduction: </B>
+<UL> 
+Working on a floating point synthesis package for VHDL and Verilog
+based on <a href="http://grouper.ieee.org/groups/754/"
+target="_top">IEEE 754</a>.&nbsp
+We are a task force assigned to the
+<a href="http://www.vhdl.org/vhdlsynth">1076.3 working group</a>
+and will be releasing our code as part of that IEEE PAR.
+</UL>
+
+<B> Group Objectives: </B>
+<UL>
+Create a parameterized package for variable width floating point
+in both VHDL and Verilog.
+</UL>
+
+<B> Activities and Achievements: </B>
+<b><i>NOTE:</i> The vhdl packages are now part of the
+<a href="http://www.vhdl.org/vhdl-200x/vhdl-200x-ft/packages/files.html">VHDL-200x-fp packages</a> Please go there to view the test cases</b>
+<ul><a href="Fixed_ug.pdf">Fixed point docuementation</a>
+<li><a href="fixed_float_types_c.vhdl">fixed_float_types_c.vhdl</a>
+<li><a href="fixed_pkg_c.vhdl">fixed_pkg_c.vhdl</a>
+- Fixed point math package and body (Synthesizable VHDL-93 compatable version)
+
+</ul>
+<ul><a href="Float_ug.pdf">Floating point docuementation</a>
+<li><a href="float_pkg_c.vhdl">float_pkg_c.vhdl</a>
+- floating point package and body (Synthesizable VHDL-93 compatable version)
+
+</ul>
+<li><b>NEW:</b> <a href="vhdl.html">Fixed and floating point support packages</a>
+This page will provide you with packages tailored to specific EDA software.
+</ul>
+<ul>
+VHDL Use model:
+<p>
+For 32 bit, the user would do the following:
+<pre>
+library ieee_proposed;
+use ieee_proposed.float_pkg.all;
+architecture....
+  signal xxx : float32;
+begin
+  xxx <= yyy + zzz;
+</pre>
+</ul>
+
+<ul>Verilog Packages (<a href="verilog_pkgs.txt">Documentation</a>)
+
+<li>fphdl_functions_base.inc - synthesizable number base package<ul>
+      <li>fphdl16_pkg.v - 16 bit floating point modules
+      <li>fphdl16_functions.inc - 16 bit floating point functions
+      <li>fphdl32_pkg.v - 32 bit floating point modules
+      <li>fphdl32_functions.inc - 32 bit floating point functions
+      <li>fphdl64_pkg.v - 64 bit floating point modules
+      <li>fphdl64_functions.inc - 64 bit floating point functions
+      <li>fphdl_pkg.v  - parameterized floating point arithmetic modules
+      <li>fphdl_functions.inc - parameterized floating point arithmetic functions</ul>
+<li><a href="verilog/fphdl64_real_functions_base.inc">fphdl64_real_functions_base.inc</a> - 64 bit real number base package<ul>
+      <li>fphdl16_real_pkg.v - 16 bit floating point modules
+      <li><a href="verilog/fphdl16_real_functions.inc">fphdl16_real_functions.inc</a> - 16 bit floating point functions
+      <li>fphdl32_real_pkg.v - 32 bit floating point modules
+      <li><a href="verilog/fphdl32_real_functions.inc">fphdl32_real_functions.inc</a> - 32 bit floating point functions
+      <li><a href="verilog/fphdl64_real_pkg.v">fphdl64_real_pkg.v</a> - 64 bit floating point modules
+      <li><a href="verilog/fphdl64_real_functions.inc">fphdl64_real_functions.inc</a> - 64 bit floating point functions
+<ul><a href="verilog/fphdl_fixed_convert_functions.inc">fphdl_fixed_convert_functions.inc</a> Fixed width conversion functions</ul>
+      <li>fphdl_real_pkg.v  - parameterized floating point arithmetic modules
+      <li><a href="verilog/fphdl_real_functions.inc">fphdl_real_functions.inc</a> - parameterized floating point arithmetic
+functions
+<ul><a href="verilog/fphdl_convert_functions.inc">fphdl_convert_functions.inc</a> parameterized width conversion functions</ul>
+</ul>
+<li>(VHDL cosimulation models use the VHDL as the base)<ul>
+      <li>fphdl16_vhdlcos_pkg.v - 16 bit VHDL cosimulation
+      <li><a href="verilog/fphdl32_vhdlcos_pkg.v">fphdl32_vhdlcos_pkg.v</a> - 32 bit VHDL cosimulation
+      <li><a href="verilog/fphdl64_vhdlcos_pkg.v">fphdl64_vhdlcos_pkg.v</a> - 64 bit VHDL cosimulation
+      <li>fphdl_vhdlcos_pkg.v - parameterized floating point VHDL cosimulation</ul>
+</ul>
+<ul>
+Verilog use model
+<p>
+include file, requires parameters definitions, in all parameterized packages
+example:
+<pre>
+   parameter exponent_width = 11;   //length of FP exponent
+   parameter fraction_width = 52;   //length of FP fraction
+   parameter round_style = 0;       //rounding option = round_nearest
+   parameter ieee_extend = 1;       //Use IEEE extended FP = true
+   `include "fphdl_functions.inc"
+</pre>
+</ul>
+<P>
+Some of the more important documents available are:
+<UL>
+<li>The e-mail reflector has been put in "maintenance" mode.
+If you wish the reflector to be reactivated, please send me an e-mail.
+<!--
+<li>Join us!  Please send an e-mail to
+<A HREF="mailto:majordomo@eda.org?SUBJECT=Subscribe&BODY=subscribe fphdl"
+>majordomo@eda.org</A>
+<ul>
+<li>With the words "subscribe fphdl" in the body if you wish to be
+added
+<li>"unsubscribe fphdl" if you wish to be dropped.
+</ul>
+<li>To view our e-mail logs, just click
+<a href="hm/index.html">here</a>.
+-->
+<LI>Alex Zamfirescu's
+<a href="http://vhdl.org/vhdlsynth/fp/index.html"
+target="_top">Floating point for Synthesis</a>
+
+</UL>
+
+<P>
+Links:
+<table border=2><tr><th>Information</th><th>Calculators</th></tr>
+<tr><td>
+<a href="http://grouper.ieee.org/groups/754/"
+target="_top">IEEE 754</a> home page
+</td><td>
+<a href="http://babbage.cs.qc.edu/courses/cs341/IEEE-754.html"
+Target="_top">IEEE-754 Floating point conversion</a>
+</td><tr>
+<tr><td> 
+<a href="http://cch.loria.fr/documentation/IEEE754/"
+target="_top">IEEE 754</a> binary floating point arithmetic
+</td><td>
+<a href="http://www.markworld.com/showfloat.html"
+target="_top">Decomposing IEEE floating point numbers</a>
+</td></tr>
+<tr><td> 
+<a href="http://www.psc.edu/general/software/packages/ieee/ieee.html"
+target="_top">The IEEE standard for floating point arithmetic</a>
+</td><td>
+<a href="http://www.ecs.umass.edu/ece/koren/arith/simulator/FPAdd/"
+target="_top">IEEE 754 floating point Addition/Subtraction</a>.
+</td></tr>
+<tr><td>
+<a href="http://www.tkt.cs.tut.fi/kurssit/8404180/luentokalvot/flp_round.pdf"
+target="_top">Floating point rounding</a>
+80180 Computer Arithmetic Timo Hämäläinen
+</table>
+
+<H3> About the <a href="http://eda.org/">eda.org</a> machine</H3>
+<UL>
+There are many 
+<A HREF="gopher://gopher.eda.org:70/0R0-2592-/docs/groups.txt">groups</A>
+with repositories and email exploders on the
+VHDL International Users' Forum (VIUF) Internet Services
+<A HREF="gopher://gopher.eda.org:70/0R0-2980-/docs/announce.txt">(VIIS)</a>
+System.  For more information about the VIIS supported features and access
+mechanisms (such as email, Internet or public dial-up), click
+<a href="gopher://gopher.eda.org:70/0R0-2980-/docs/pub.access.txt">here</a>.
+</UL>
+
+<B><A NAME=Chair> Group Sysop/Chair: </A></B>
+<address> dbishop, dbishop@vhdl.org </address>
